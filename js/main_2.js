@@ -2,13 +2,11 @@
 var initialColors = colorbrewer.Reds[8];
 
 //TODO: change the name and id field of your data. These will be used to link the pcp with the map, and also display labels
-var key = "Name";
-var idfield = "id";
+var key = "County";
+var idfield = "GEOID";
 
 //TODO: change the name of the attributes to include in the parallel coordinate plot
-var attNames = ["00-04", "05-09", "10-14", "15-19", "20-24", "25-29", "30-34",
-"35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74",
-"75-79", "80+"];
+var attNames = ["deathRate", "pctSmokers", "pctObese", "healthCosts"];
 
 var pcpdata = [];
 var expressed;
@@ -34,12 +32,15 @@ var svg = d3.select(map.getPanes().overlayPane).append("svg"),
 g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
 //d3.json("data/iowa_counties.json", function(error, jsonData) {
-d3.json("data/population-joined-map.geo.json", function(error, jsonData) {
+d3.json("data/out.geojson", function(error, jsonData) {
   if (error) throw error;
 
   //create an attribute array (pcpdata)
   jsonData.features.forEach(function(d){
     d.properties.id = d[idfield];
+    attNames.forEach(function(att){
+      d.properties[att] = +d.properties[att];
+    });
     pcpdata.push(d.properties);
   });
   expressed = attNames[0];
@@ -87,7 +88,7 @@ d3.json("data/population-joined-map.geo.json", function(error, jsonData) {
     this.stream.point(point.x, point.y);
   }
 
-
+  console.log(pcpdata);
   //visualize pcp
     this.pcp = d3.parcoords()("#pcp")
     .data(pcpdata)
@@ -209,7 +210,6 @@ d3.json("data/population-joined-map.geo.json", function(error, jsonData) {
   function highlight(data){
     // Variables
     var props = data.properties; //json properties
-    //TODO: change the label - Population
     var labelAttribute = "<h1>"+ roundRight(props[expressed]) + "%</h1><br><b>Population " + expressed + "</b>:" + props[key]+ ""; //label content
     var labelName = data.id;
 

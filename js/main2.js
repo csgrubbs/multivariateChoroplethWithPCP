@@ -37,7 +37,9 @@ d3.json("data/out.geojson", function(error, jsonData) {
 
   //create an attribute array (pcpdata)
   jsonData.features.forEach(function(d){
-    d.properties.id = d[idfield];
+    console.log(d);
+    d.id = +d.properties[idfield];
+    d.properties[idfield] = +d.properties[idfield];
     attNames.forEach(function(att){
       d.properties[att] = +d.properties[att];
     });
@@ -88,7 +90,6 @@ d3.json("data/out.geojson", function(error, jsonData) {
     this.stream.point(point.x, point.y);
   }
 
-  console.log(pcpdata);
   //visualize pcp
     this.pcp = d3.parcoords()("#pcp")
     .data(pcpdata)

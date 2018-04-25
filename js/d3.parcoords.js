@@ -121,8 +121,7 @@ pc.autoscale = function() {
     },
     "number": function(k) {
       return d3.scale.linear()
-        //.domain(d3.extent(__.data, function(d) { return +d[k]; }))
-        .domain([0, 22])
+        .domain(d3.extent(__.data, function(d) { return +d[k]; }))
         .range([h()+1, 1])
     },
     "string": function(k) {

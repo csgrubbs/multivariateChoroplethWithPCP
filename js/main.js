@@ -1,5 +1,9 @@
+
+var polygonJSONFile = "data/population-joined-map.geo.json";
+
 //TODO: change the colors
-var initialColors = colorbrewer.Reds[8];
+var numberOfClasses = 7;
+var initialColors = colorbrewer.Reds[numberOfClasses];
 
 //TODO: change the name and id field of your data. These will be used to link the pcp with the map, and also display labels
 var key = "Name";
@@ -9,6 +13,10 @@ var idfield = "id";
 var attNames = ["00-04", "05-09", "10-14", "15-19", "20-24", "25-29", "30-34",
 "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74",
 "75-79", "80+"];
+
+//DO NOT CHANGE ANYTHING BELOW THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING
+////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 var pcpdata = [];
 var expressed;
@@ -22,7 +30,6 @@ function initialize(){
   setMap();
 };
 
-
 function setMap(){
   //TODO: change the center of your map in setView, and change the zoom level (currently set as 2) to fit your dataset
   var map = new L.map('map').setView([15, -10], 2)
@@ -34,7 +41,7 @@ var svg = d3.select(map.getPanes().overlayPane).append("svg"),
 g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
 //d3.json("data/iowa_counties.json", function(error, jsonData) {
-d3.json("data/population-joined-map.geo.json", function(error, jsonData) {
+d3.json(polygonJSONFile, function(error, jsonData) {
   if (error) throw error;
 
   //create an attribute array (pcpdata)
@@ -86,7 +93,6 @@ d3.json("data/population-joined-map.geo.json", function(error, jsonData) {
     var point = map.latLngToLayerPoint(new L.LatLng(y, x));
     this.stream.point(point.x, point.y);
   }
-
 
   //visualize pcp
     this.pcp = d3.parcoords()("#pcp")

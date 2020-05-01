@@ -16,6 +16,15 @@ body {
   height: 200px;
 }
 
+#legend{
+  width: 120px;
+  height: 180px;
+}
+
+.legendQuant {
+  font-weight: normal;
+}
+
 svg {
   display: block;
   margin: auto;

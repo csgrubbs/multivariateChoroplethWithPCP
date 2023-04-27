@@ -1,28 +1,27 @@
 
-var polygonJSONFile = "data/population-joined-map.geo.json";
+var polygonJSONFile = "data/midwest_rates.geojson";
 
 //change the center of your map in setView
-var centerLatitude = 15, centerLongitude = -20;
+var centerLatitude = 45.3, centerLongitude = -92.3;
 //Change the zoom level to fit your dataset
 // zoom level 1 shows the whole world, and 15 focuses on a neighborhood level
-var zoomLevel = 2;
+var zoomLevel = 5;
 
 //TODO: change the colors
-var numberOfClasses = 7;
-var colors = colorbrewer.Reds;
+var numberOfClasses = 6;
+var colors = colorbrewer.PuRd;
 
 //TODO: change the name and id field of your data. These will be used to link the pcp with the map and display labels
-var key = "Name";
+var key = "NAME";
 
 //TODO: change the attribute names to be included in the parallel coordinate plot
-var attNames = ["00-04", "05-09", "10-14", "15-19", "20-24", "25-29", "30-34",
-"35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74",
-"75-79", "80+"];
+var attNames = ["all_rate", "mddo_rate", "nppa_rate", "population", "white", "black", "hispanic", "pct_male",
+"pct_female", "med_age"];
 var attLegendFormat = ".1f"
 
 // This string is appended in front of the attribute name to make age groups descriptive
 // If your attribute names do not need a preceding text, simply make this an empty string ""
-var preAttributeAlias = "Age Group";
+//var preAttributeAlias = "Provider Rate";
 
 //DO NOT CHANGE ANYTHING BELOW THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING
 ////////////////////////////////////////////////////////////////////////////////////////////////

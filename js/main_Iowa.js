@@ -1,21 +1,23 @@
 
-var polygonJSONFile = "data/out.geojson";
+var polygonJSONFile = "data/combined_rates.geojson";
 
 //change the center of your map in setView
-var centerLatitude = 42.17, centerLongitude = -93.45;
+var centerLatitude = 45.3, centerLongitude = -92.3;
 //Change the zoom level to fit your dataset
 // zoom level 1 shows the whole world, and 15 focuses on a neighborhood level
-var zoomLevel = 7;
+var zoomLevel = 5;
 
 var numberOfClasses = 7;
 var colors = colorbrewer.Reds;
 
 //TODO: change the name and id field of your data. These will be used to link the pcp with the map, and also display labels
-var key = "County";
+var key = "FIPS";
 var dropdowntext = "Select Attribute:";
 
 //TODO: change the name of the attributes to include in the parallel coordinate plot
-var attNames = ["deathRate", "pctSmokers", "pctObese", "healthCosts"];
+var attNames = ["rates_added_all_year", "rates_added_all_all_rate", "rates_added_all_mddo_rate",
+"rates_added_all_nppa_rate", "rates_added_all_pop_sqmi", "rates_added_all_white", "rates_added_all_hispanic",
+"rates_added_all_other_race", "rates_added_all_pct_male", "rates_added_all_pct_female", "rates_added_all_med_age"];
 var attLegendFormat = ".0f"
 
 // This string is appended in front of the attribute name to make age groups descriptive
